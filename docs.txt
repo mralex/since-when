@@ -1,0 +1,50 @@
+Since When
+
+Task History Tracking (a la iOS app, `Time Flies`)
+
+Backend: Primarily JSON API based, Django.
+
+Frontend: Twitter Flight? Ember.js? Knockout? Backbone?
+
+
+
+Models:
+
+Task
+    - Name (Varchar)
+    - Description (Text)
+    - Bookmark? (Priority? Rating? `Important`?) (Bool?)
+    - OneToMany TaskActivities (Unsigned Int)
+    - Created (Timestamp)
+    - Updated (Timestamp)
+    - Status (Unsigned Tinyint) (0 = Active; 255 = Deleted)
+
+TaskActivity
+    - OneToOne Task (Unsigned Int)
+    - Date (Timestamp)
+    - Notes (Text)
+    - Status (Unsigned Tinyint) (0 = Active; 255 = Deleted)
+
+
+Views:
+
+Index:
+    - View
+        - Landing page for entire frontend app
+
+Task:
+    - Create
+        - Include first activity
+    - Update
+    - Destroy
+    - View one
+        - Include total activities
+    - View all
+        - Include total activities per task
+
+TaskActivity
+    - Create for task
+    - Update
+    - Destroy
+    - View one
+    - View all for task
