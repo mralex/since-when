@@ -6,6 +6,10 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from apps.task.factories import (
+    TaskFactory,
+    TaskActivityFactory,
+)
 
 
 class SimpleTest(TestCase):
