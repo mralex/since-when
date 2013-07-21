@@ -9,3 +9,6 @@ share/
 *.log
 *.pyc
 .Python
+
+static/js/vendor
+static/tmp

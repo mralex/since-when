@@ -1,0 +1,10 @@
+{
+    "name": "since-when-js-client",
+    "version": "0.0.1",
+    "dependencies": {
+        "jquery": "~1.10.2",
+        "handlebars": "~1.0.0",
+        "ember": "1.0.0-rc.6",
+        "requirejs": "~2.1.8"
+    }
+}
