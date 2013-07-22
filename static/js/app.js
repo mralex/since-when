@@ -4,7 +4,8 @@ requirejs.config({
         'hb': 'vendor/requirejs-handlebars/hb',
         'jquery': 'vendor/jquery/jquery',
         'handlebars': 'vendor/handlebars/handlebars',
-        'ember': 'vendor/ember/ember'
+        'ember': 'vendor/ember/ember',
+        'ember-data': 'vendor/ember-data-shim/ember-data'
     },
     shim: {
         'handlebars': {
@@ -13,6 +14,10 @@ requirejs.config({
         'ember': {
             deps: ['jquery', 'handlebars'],
             exports: 'Ember'
+        },
+        'ember-data': {
+            deps: ['ember'],
+            exports: 'DS'
         }
     }
 });
@@ -20,15 +25,19 @@ requirejs.config({
 require([
     'jquery',
     'ember',
+    'ember-data',
     'handlebars',
     'text!templates/index.handlebars',
+    'data-store',
     'router',
     'tasks/app'
 ], function(
     $,
     Ember,
+    DS,
     Handlebars,
     applicationTemplate,
+    dataStore,
     router,
     tasksApp
 ) {
@@ -36,6 +45,9 @@ require([
     Ember.TEMPLATES['application'] = Ember.Handlebars.compile(applicationTemplate);
 
     window.App = App = Ember.Application.create();
+
+    App.Store = dataStore;
+
     App.Router = router;
 
     $.extend(

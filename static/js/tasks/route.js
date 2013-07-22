@@ -1,9 +1,7 @@
-define(['ember'], function(Ember) {
+define(['ember', 'app'], function(Ember, App) {
     return Ember.Route.extend({
         model: function() {
-            return $.get('/api/tasks').pipe(function(response) {
-                return response.tasks;
-            });
+            return App.Task.find();
         }
     });
 });

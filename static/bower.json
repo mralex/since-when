@@ -5,6 +5,7 @@
         "jquery": "~1.10.2",
         "handlebars": "~1.0.0",
         "ember": "1.0.0-rc.6",
+        "ember-data-shim": "~0.0.13",
         "requirejs": "~2.1.8"
     }
 }
