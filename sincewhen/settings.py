@@ -119,6 +119,7 @@ TEMPLATE_DIRS = (
 )
 
 SINCEWHEN_APPS = (
+    'apps.client',
     'apps.task',
 )
 
