@@ -4,7 +4,6 @@ define(['ember-data'], function(DS) {
     });
     return DS.Store.extend({
         revision: 12,
-        adapter: adapter,
-        url: '/api'
+        adapter: adapter
     });
 });

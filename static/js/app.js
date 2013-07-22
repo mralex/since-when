@@ -28,7 +28,7 @@ require([
     'ember-data',
     'handlebars',
     'text!templates/index.handlebars',
-    'data-store',
+    'dataStore',
     'router',
     'tasks/app'
 ], function(
