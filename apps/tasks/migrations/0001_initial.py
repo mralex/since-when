@@ -9,7 +9,7 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'Task'
-        db.create_table(u'task_task', (
+        db.create_table(u'tasks_task', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
             ('description', self.gf('django.db.models.fields.TextField')()),
@@ -18,31 +18,31 @@ class Migration(SchemaMigration):
             ('created', self.gf('django.db.models.fields.DateTimeField')()),
             ('updated', self.gf('django.db.models.fields.DateTimeField')()),
         ))
-        db.send_create_signal(u'task', ['Task'])
+        db.send_create_signal(u'tasks', ['Task'])
 
         # Adding model 'TaskActivity'
-        db.create_table(u'task_taskactivity', (
+        db.create_table(u'tasks_taskactivity', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('task', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['task.Task'], unique=True)),
+            ('task', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['tasks.Task'], unique=True)),
             ('recorded', self.gf('django.db.models.fields.DateTimeField')()),
             ('notes', self.gf('django.db.models.fields.TextField')()),
             ('status', self.gf('django.db.models.fields.SmallIntegerField')()),
             ('created', self.gf('django.db.models.fields.DateTimeField')()),
             ('updated', self.gf('django.db.models.fields.DateTimeField')()),
         ))
-        db.send_create_signal(u'task', ['TaskActivity'])
+        db.send_create_signal(u'tasks', ['TaskActivity'])
 
 
     def backwards(self, orm):
         # Deleting model 'Task'
-        db.delete_table(u'task_task')
+        db.delete_table(u'tasks_task')
 
         # Deleting model 'TaskActivity'
-        db.delete_table(u'task_taskactivity')
+        db.delete_table(u'tasks_taskactivity')
 
 
     models = {
-        u'task.task': {
+        u'tasks.task': {
             'Meta': {'object_name': 'Task'},
             'created': ('django.db.models.fields.DateTimeField', [], {}),
             'description': ('django.db.models.fields.TextField', [], {}),
@@ -52,16 +52,16 @@ class Migration(SchemaMigration):
             'status': ('django.db.models.fields.SmallIntegerField', [], {}),
             'updated': ('django.db.models.fields.DateTimeField', [], {})
         },
-        u'task.taskactivity': {
+        u'tasks.taskactivity': {
             'Meta': {'object_name': 'TaskActivity'},
             'created': ('django.db.models.fields.DateTimeField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'notes': ('django.db.models.fields.TextField', [], {}),
             'recorded': ('django.db.models.fields.DateTimeField', [], {}),
             'status': ('django.db.models.fields.SmallIntegerField', [], {}),
-            'task': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['task.Task']", 'unique': 'True'}),
+            'task': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['tasks.Task']", 'unique': 'True'}),
             'updated': ('django.db.models.fields.DateTimeField', [], {})
         }
     }
 
-    complete_apps = ['task']
+    complete_apps = ['tasks']

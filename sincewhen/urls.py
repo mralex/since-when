@@ -17,5 +17,5 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', ClientView.as_view()),
-    url(r'^api/tasks/?', include('apps.task.urls')),
+    url(r'^api/tasks/?', include('apps.tasks.urls')),
 )

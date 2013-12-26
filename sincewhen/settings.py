@@ -120,7 +120,7 @@ TEMPLATE_DIRS = (
 
 SINCEWHEN_APPS = (
     'apps.client',
-    'apps.task',
+    'apps.tasks',
 )
 
 INSTALLED_APPS = (
@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'south',
+    'rest_framework',
 ) + SINCEWHEN_APPS
 
 TEST_RUNNER = 'sincewhen.test_runner.TestSuiteRunner'
