@@ -1,7 +1,8 @@
 define(function(require) {
     'use strict';
 
-    var React = require('react');
+    var $ = require('jquery'),
+        React = require('react');
 
     return React.createClass({
         _modelChanged: function() {
@@ -15,15 +16,30 @@ define(function(require) {
         },
 
         componentWillMount: function() {
-            this.state.task.on('change', this._modelChanged, this);
+            this.props.task.on('change', this._modelChanged, this);
+        },
+
+        handleImportantChange: function(e) {
+            this.props.task.set('important', $(e.target).is(':checked'));
         },
 
         render: function() {
+            var className = 'task';
+
+            if (this.state.task.get('important')) {
+                className += ' important';
+            }
+
             return React.DOM.li({
-                className: 'task',
+                className: className,
                 children: [
                     React.DOM.h3({}, this.state.task.get('name')),
-                    React.DOM.p({}, this.state.task.get('description'))
+                    React.DOM.p({}, this.state.task.get('description')),
+                    React.DOM.input({
+                        type: 'checkbox',
+                        checked: this.state.task.get('important'),
+                        onChange: this.handleImportantChange
+                    }, 'Important')
                 ]
             });
         }
