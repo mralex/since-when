@@ -1,0 +1,13 @@
+{
+  "name": "since-when-client",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-requirejs": "~0.3.4",
+    "grunt-react": "~0.6.0",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}
