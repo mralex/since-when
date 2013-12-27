@@ -12,3 +12,5 @@ share/
 
 static/js/vendor
 static/tmp
+
+.DS_Store
