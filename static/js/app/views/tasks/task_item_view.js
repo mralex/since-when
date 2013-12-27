@@ -20,7 +20,7 @@ define(function(require) {
         },
 
         handleImportantChange: function(e) {
-            this.props.task.set('important', $(this.refs.importantCheckbox.getDOMNode()).is(':checked'));
+            this.props.task.set('important', this.refs.importantCheckbox.state.checked);
         },
 
         render: function() {
