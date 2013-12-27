@@ -1,3 +1,6 @@
+/**
+ * @jsx React.DOM
+ */
 define(function(require) {
     'use strict';
 

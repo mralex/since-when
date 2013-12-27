@@ -1,9 +1,12 @@
+/**
+ * @jsx React.DOM
+ */
 define(function(require) {
     'use strict';
 
     var Backbone = require('backbone'),
         React = require('react'),
-        TaskListView = require('jsx!views/tasks/task_list_view');
+        TaskListView = require('views/tasks/task_list_view');
 
     return React.createClass({
         render: function() {

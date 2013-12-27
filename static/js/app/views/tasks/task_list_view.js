@@ -1,8 +1,11 @@
+/**
+ * @jsx React.DOM
+ */
 define(function(require) {
     'use strict';
 
     var React = require('react'),
-        TaskItemView = require('jsx!views/tasks/task_item_view');
+        TaskItemView = require('views/tasks/task_item_view');
 
     return React.createClass({
         _collectionChanged: function() {

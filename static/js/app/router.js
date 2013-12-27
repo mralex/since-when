@@ -6,7 +6,7 @@ define(function(require) {
 
         TaskCollection = require('models/task_collection'),
 
-        TasksHomeView = require('jsx!views/tasks/home_view');
+        TasksHomeView = require('views/tasks/home_view');
 
     return Backbone.Router.extend({
         initialize: function() {
