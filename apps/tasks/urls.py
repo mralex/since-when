@@ -7,7 +7,7 @@ from apps.tasks import views
 
 urlpatterns = patterns('',
         url(r'^$', views.TaskListView.as_view()),
-        # url(r'^(?P<task_id>\d+)/$', views.TaskView.as_view()),
+        url(r'^(?P<pk>\d+)/$', views.TaskView.as_view()),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns)

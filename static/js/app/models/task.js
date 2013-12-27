@@ -9,6 +9,8 @@ define(function(require) {
             description: '',
             important: false,
             status: 10
-        }
+        },
+
+        urlRoot: '/api/tasks'
     });
 });

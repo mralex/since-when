@@ -10,10 +10,18 @@ from apps.tasks.models import Task
 from apps.tasks.serializers import TaskSerializer
 
 
-class TaskListView(generics.ListAPIView):
+class TaskListView(generics.ListCreateAPIView):
     model = Task
     serializer_class = TaskSerializer
 
+    # def post(self, request, format=None):
+    #     import ipdb ; ipdb.set_trace()
+    #     return super(TaskListView, self).post(request, format=None)
+
+
+class TaskView(generics.RetrieveUpdateDestroyAPIView):
+    model = Task
+    serializer_class = TaskSerializer
 
 # class TaskView(JSONResponseMixin, BaseDetailView):
 #     def get_object(self):

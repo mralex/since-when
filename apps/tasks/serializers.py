@@ -9,13 +9,13 @@ class TaskSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Task
         fields = (
-            'id',
-            'name',
-            'description',
-            'important',
-            'status',
-            'created',
-            'updated',
+            u'id',
+            u'name',
+            u'description',
+            u'important',
+            u'status',
+            u'created',
+            u'updated',
         )
         read_only_fields = ('id', 'created')
 
