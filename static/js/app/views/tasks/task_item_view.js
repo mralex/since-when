@@ -20,28 +20,32 @@ define(function(require) {
         },
 
         handleImportantChange: function(e) {
-            this.props.task.set('important', $(e.target).is(':checked'));
+            this.props.task.set('important', $(this.refs.importantCheckbox.getDOMNode()).is(':checked'));
         },
 
         render: function() {
-            var className = 'task';
+            var className = 'task',
+                checkboxId = 'important_' + this.state.task.get('id');
 
             if (this.state.task.get('important')) {
                 className += ' important';
             }
 
-            return React.DOM.li({
-                className: className,
-                children: [
-                    React.DOM.h3({}, this.state.task.get('name')),
-                    React.DOM.p({}, this.state.task.get('description')),
-                    React.DOM.input({
-                        type: 'checkbox',
-                        checked: this.state.task.get('important'),
-                        onChange: this.handleImportantChange
-                    }, 'Important')
-                ]
-            });
+            return (
+                <li className={ className }>
+                    <h3>{ this.state.task.get('name') }</h3>
+                    <p>{ this.state.task.get('description') }</p>
+                    <p>
+                        <input
+                            type="checkbox"
+                            ref="importantCheckbox"
+                            id={ checkboxId }
+                            checked={ this.state.task.get('important') }
+                            onChange={ this.handleImportantChange }
+                        /> <label htmlFor={ checkboxId }>Important</label>
+                    </p>
+                </li>
+            );
         }
     });
 });

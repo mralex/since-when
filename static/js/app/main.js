@@ -5,6 +5,8 @@ requirejs.config({
         'jquery': '../vendor/jquery/jquery',
         'handlebars': '../vendor/handlebars/handlebars',
         'react': '../vendor/react/react',
+        'JSXTransformer': '../vendor/react/JSXTransformer',
+        'jsx': '../vendor/require-jsx/jsx',
         'underscore': '../vendor/underscore-amd/underscore',
         'backbone': '../vendor/backbone-amd/backbone'
     },
