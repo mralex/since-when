@@ -5,6 +5,7 @@ define(function(require) {
     'use strict';
 
     var $ = require('jquery'),
+        Backbone = require('backbone'),
         React = require('react');
 
     return React.createClass({
@@ -22,6 +23,11 @@ define(function(require) {
             this.props.task.on('change', this._modelChanged, this);
         },
 
+        handleTaskClicked: function(e) {
+            e.preventDefault();
+            Backbone.history.navigate('/tasks/' + this.state.task.get('id'), { trigger: true });
+        },
+
         handleImportantChange: function(e) {
             this.props.task.set('important', this.refs.importantCheckbox.state.checked);
         },
@@ -35,8 +41,12 @@ define(function(require) {
             }
 
             return (
-                <li className={ className }>
-                    <h3>{ this.state.task.get('name') }</h3>
+                <div className={ className }>
+                    <h3>
+                        <a href="#" onClick={ this.handleTaskClicked }>
+                            { this.state.task.get('name') }
+                        </a>
+                    </h3>
                     <p>{ this.state.task.get('description') }</p>
                     <p>
                         <input
@@ -47,7 +57,10 @@ define(function(require) {
                             onChange={ this.handleImportantChange }
                         /> <label htmlFor={ checkboxId }>Important</label>
                     </p>
-                </li>
+                    <p>
+                        <span className="taskCount">{ this.state.task.get('activities').length } instances</span>
+                    </p>
+                </div>
             );
         }
     });

@@ -22,15 +22,15 @@ define(function(require) {
             this.props.taskCollection.on('add', this._collectionChanged, this);
             this.props.taskCollection.on('remove', this._collectionChanged, this);
             this.props.taskCollection.on('sync', this._collectionChanged, this);
-
-            this.props.taskCollection.fetch();
         },
 
         render: function() {
             var taskViews = this.state.taskCollection.map(function(task) {
                 var key = 'task_' + task.get('id');
                 return (
-                    <TaskItemView task={ task } key={ key } />
+                    <li>
+                        <TaskItemView task={ task } key={ key } />
+                    </li>
                 );
             });
 
