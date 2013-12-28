@@ -13,9 +13,22 @@ class Task(models.Model):
 
 
 class TaskActivity(models.Model):
-    task = models.ForeignKey('Task')
-    recorded = models.DateTimeField()
-    notes = models.TextField()
-    status = models.SmallIntegerField()
-    created = models.DateTimeField()
-    updated = models.DateTimeField()
+    task = models.ForeignKey('Task', related_name='activities')
+    recorded = models.DateTimeField(
+        blank=True,
+        default=datetime.datetime.now,
+    )
+    notes = models.TextField(
+        blank=True,
+    )
+    status = models.SmallIntegerField(
+        blank=True,
+    )
+    created = models.DateTimeField(
+        blank=True,
+        default=datetime.datetime.now,
+    )
+    updated = models.DateTimeField(
+        blank=True,
+        default=datetime.datetime.now,
+    )

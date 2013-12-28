@@ -6,37 +6,71 @@ from rest_framework import generics
 
 from sincewhen.mixins import JSONResponseMixin
 
-from apps.tasks.models import Task
-from apps.tasks.serializers import TaskSerializer
+from apps.tasks.models import (
+    Task,
+    TaskActivity,
+)
+
+from apps.tasks.serializers import (
+    TaskSerializer,
+    TaskActivitySerializer,
+)
 
 
 class TaskListView(generics.ListCreateAPIView):
     model = Task
     serializer_class = TaskSerializer
 
-    # def post(self, request, format=None):
-    #     import ipdb ; ipdb.set_trace()
-    #     return super(TaskListView, self).post(request, format=None)
-
 
 class TaskView(generics.RetrieveUpdateDestroyAPIView):
     model = Task
     serializer_class = TaskSerializer
 
-# class TaskView(JSONResponseMixin, BaseDetailView):
-#     def get_object(self):
-#         try:
-#             task = Task.objects.get(pk=self.kwargs.get('task_id'))
-#         except Task.DoesNotExist:
-#             raise Http404()
 
-#         return task
+class TaskActivityView(generics.RetrieveAPIView):
+    model = TaskActivity
+    serializer_class = TaskActivitySerializer
 
-#     def get_context_data(self, **kwargs):
-#         res = self.object.to_api()
+    def get_object(self):
+        task_pk = self.kwargs.get('task_pk', None)
+        pk = self.kwargs.get(self.pk_url_kwarg, None)
 
-#         res['activities'] = []
-#         for activity in self.object.taskactivity_set.all():
-#             res['activities'].append(activity.to_api())
+        try:
+            task = Task.objects.get(pk=task_pk)
+        except Task.DoesNotExist:
+            raise Http404()
 
-#         return res
+        try:
+            activity = task.taskactivity_set.get(pk=pk)
+        except TaskActivity.DoesNotExist:
+            raise Http404()
+
+        return activity
+
+
+class TaskActivityListView(generics.ListCreateAPIView):
+    model = TaskActivity
+    serializer_class = TaskActivitySerializer
+
+    def get_queryset(self):
+        pk = self.kwargs.get(self.pk_url_kwarg, None)
+
+        try:
+            activities = Task.objects.get(pk=pk).taskactivity_set.all()
+        except Task.DoesNotExist:
+            raise Http404()
+
+        return activities
+
+    def get_task_object(self):
+        pk = self.kwargs.get(self.pk_url_kwarg, None)
+
+        try:
+            task = Task.objects.get(pk=pk)
+        except Task.DoesNotExist:
+            raise Http404()
+
+        return task
+
+    def pre_save(self, obj):
+        obj.task = self.get_task_object()
