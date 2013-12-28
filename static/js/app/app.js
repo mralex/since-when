@@ -6,7 +6,9 @@ define(function(require) {
     return {
         start: function() {
             this.router = new Router();
-            Backbone.history.start();
+            Backbone.history.start({
+                pushState: true
+            });
         }
     };
 });

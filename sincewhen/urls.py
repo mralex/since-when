@@ -16,6 +16,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', ClientView.as_view()),
     url(r'^api/tasks/?', include('apps.tasks.urls')),
+    url(r'^(.*)$', ClientView.as_view()),
 )
